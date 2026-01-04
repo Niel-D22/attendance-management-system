@@ -1,14 +1,15 @@
-
-import './App.css'
+import { Routes, Route } from "react-router-dom";
+import PublicLayout from "./layouts/PublicLayout";
+import Beranda from "./pages/Public/Beranda";
 
 function App() {
-
-
   return (
-    <>
-   <p className='bg-amber-300'>hahahahha</p>
-    </>
-  )
+    <Routes>
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<Beranda />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
