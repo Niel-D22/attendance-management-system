@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import PublicLayout from "./layouts/PublicLayout";
-import Beranda from "./pages/Public/Beranda";
+import Home from "./pages/Public/Home";
 
 function App() {
   return (
     <Routes>
       <Route element={<PublicLayout />}>
-        <Route path="/" element={<Beranda />} />
+        <Route path="/" element={<Home />} />
       </Route>
     </Routes>
   );

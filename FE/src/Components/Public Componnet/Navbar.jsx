@@ -1,122 +1,158 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { HiMenuAlt3, HiX } from "react-icons/hi"; // Pastikan install react-icons
 import ISGLOGO from "../../assets/LOGOISG.png";
+import ISGNAME from "../../assets/Group 5.svg";
+
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    // Container Luar: Mengatur posisi navbar di tengah & floating
-    // Saya ubah 'bg-[#11C4D4]' menjadi transparan agar navbar terlihat mengambang
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4">
-      {/* Container Utama (Si "Pil" Putih) */}
-      <div className="bg-white rounded-full w-full max-w-[880px] h-[64px] px-10 flex items-center justify-between shadow-sm">
-        <div className="flex  justify-center items-center gap-3 pl-2">
-          {/* Lingkaran Logo (Placeholder) */}
-          <div className="w-12 h-12 shadow rounded-full flex items-center justify-center text-white overflow-hidden">
-            {/* Ganti img ini dengan logo asli Anda */}
-            <img  src={ISGLOGO} alt="Logo ISG" />
-          </div> 
-          <span className="font-bold text-3xl [text-shadow:1px_1px_4px_rgba(0,0,0,0.4)] text-[#11C4D4] tracking-tight">
-            I<span className="text-[#0C81E4]">S</span>
-            <span className="text-[#4FE7AF]">G</span>
-          </span>
+    <>
+      {/* =================================================================================
+          1. TAMPILAN DESKTOP (Layar Besar)
+          - Menggunakan kode ASLI Anda.
+          - Hilang saat layar kecil (hidden lg:block).
+      ================================================================================= */}
+      <div className="hidden lg:block">
+        {/* Container Logo Kiri & Button Kanan */}
+        <div className="absolute top-6 left-0 right-0 z-40 px-6">
+          <div className="max-w-[1300px] mx-auto flex items-center justify-between">
+            {/* Logo Kiri */}
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center overflow-hidden">
+                <img src={ISGLOGO} alt="Logo ISG" />
+              </div>
+              <img src={ISGNAME} width="90" alt="ISG" />
+            </div>
+
+            {/* Button Masuk Kanan */}
+            <button className="px-6 py-2.5 rounded-full text-sm font-medium bg-black text-white hover:bg-gray-800 transition">
+              Masuk
+            </button>
+          </div>
         </div>
 
-        {/* --- 2. BAGIAN TENGAH: MENU --- */}
-        <div className="hidden md:flex items-center gap-1">
-          {/* Menu: Beranda (Aktif) */}
-          <a
-            href="#"
-            className="flex items-center gap-2 hover:bg-[#E6E6E6] px-5 py-2 rounded-full transition-colors"
+        {/* Navigasi Pill Tengah (Link Menu) */}
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+          <div
+            className={`flex items-center gap-1 px-2 py-1 rounded-full transition-all duration-300
+              ${
+                scrolled
+                  ? "bg-white shadow-md"
+                  : "bg-white/10 backdrop-blur-md"
+              }`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-              <polyline points="9 22 9 12 15 12 15 22" />
-            </svg>
-            <span className="text-sm font-medium text-black">Beranda</span>
-          </a>
+            {["Beranda", "Tentang", "Kegiatan", "Kontak"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition
+                  ${
+                    scrolled
+                      ? "text-gray-800 hover:bg-black/5"
+                      : "text-white hover:bg-white/10"
+                  }`}
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
 
-          {/* Menu: Tentang */}
-          <a
-            href="#"
-            className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-gray-100 text-gray-600 transition-colors"
+      {/* =================================================================================
+          2. TAMPILAN MOBILE & TABLET (Layar Kecil)
+          - Muncul HANYA di HP (lg:hidden).
+      ================================================================================= */}
+      <div className="lg:hidden">
+        
+        {/* A. PILL TENGAH (Isi: Logo + Button Masuk) */}
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-max">
+          <div
+            className={`flex items-center gap-3 px-3 py-2 rounded-full transition-all duration-300
+              ${
+                scrolled
+                  ? "bg-white shadow-md"
+                  : "bg-white/20 backdrop-blur-md border border-white/20"
+              }`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 16v-4" />
-              <path d="M12 8h.01" />
-            </svg>
-            <span className="text-sm font-medium">Tentang</span>
-          </a>
-
-          {/* Menu: Kegiatan */}
-          <a
-            href="#"
-            className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-gray-100 text-gray-600 transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-            </svg>
-            <span className="text-sm font-medium">Kegiatan</span>
-          </a>
-
-          {/* Menu: Kontak */}
-          <a
-            href="#"
-            className="flex items-center gap-2 px-4 py-2 rounded-full hover:bg-gray-100 text-gray-600 transition-colors"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-            </svg>
-            <span className="text-sm font-medium">Kontak</span>
-          </a>
+            {/* Logo Kecil */}
+            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm overflow-hidden">
+               <img src={ISGLOGO} alt="Logo" className="h-6 w-auto object-contain" />
+            </div>
+            
+            {/* Button Masuk (Di dalam Pill) */}
+            <button className="px-4 py-1.5 rounded-full text-xs font-bold bg-black text-white hover:bg-gray-800 transition">
+              Masuk
+            </button>
+          </div>
         </div>
 
-        {/* --- 3. BAGIAN KANAN: TOMBOL --- */}
-        <div>
-          <button className="bg-black w-[126px] text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-gray-800 transition-colors">
-            Masuk
+        {/* B. ICON SIDEBAR (Di Sebelah Kanan, Luar Navbar) */}
+        <div className="fixed top-6 right-6 z-50">
+          <button
+            onClick={() => setIsSidebarOpen(true)}
+            className={`p-3 rounded-full shadow-lg text-2xl transition-transform active:scale-90
+              ${scrolled ? "bg-white text-[#11C4D4]" : "bg-white/20 backdrop-blur-md text-white border border-white/20"}`}
+          >
+            <HiMenuAlt3 />
           </button>
         </div>
       </div>
-    </div>
+
+      {/* =================================================================================
+          3. SIDEBAR DRAWER (Overlay Menu)
+          - Muncul saat tombol hamburger diklik.
+      ================================================================================= */}
+      <div
+        className={`fixed inset-0 z-[60] transform transition-transform duration-300 lg:hidden ${
+          isSidebarOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {/* Background Gelap (Klik tutup sidebar) */}
+        <div
+          className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+          onClick={() => setIsSidebarOpen(false)}
+        ></div>
+
+        {/* Panel Sidebar Putih */}
+        <div className="absolute right-0 top-0 h-full w-[280px] bg-white shadow-2xl p-6 flex flex-col gap-6">
+          <div className="flex justify-between items-center mb-2">
+            <div className="flex items-center gap-2">
+              <img src={ISGLOGO} className="h-8" alt="logo" />
+              <img src={ISGNAME} className="h-4" alt="ISG" />
+            </div>
+            <button
+              onClick={() => setIsSidebarOpen(false)}
+              className="text-3xl text-gray-500 hover:text-red-500"
+            >
+              <HiX />
+            </button>
+          </div>
+          
+          {/* Menu Link Sidebar */}
+          <nav className="flex flex-col gap-4 font-bold text-lg text-gray-700 mt-4">
+            {["Beranda", "Tentang", "Kegiatan", "Kontak"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={() => setIsSidebarOpen(false)}
+                className="hover:text-[#11C4D4] border-b border-gray-100 pb-3"
+              >
+                {item}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+    </>
   );
 };
 
