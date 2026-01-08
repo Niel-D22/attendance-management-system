@@ -125,7 +125,7 @@ const Beranda = () => {
               {percent}%
             </h2>
             <p className="text-[14px] font-medium max-w-[200px] mt-2 leading-tight text-center lg:text-left">
-              sebagian besar Mahasiswa merasa percaya diri setelah bulan pertama
+              Sebagian Besar Mahasiswa Merasa Manfaat Positif Bergabung di ISG
             </p>
           </div>
         </div>
@@ -168,7 +168,7 @@ const Beranda = () => {
 
           {/* Deskripsi Bawah */}
           <div className="mt-4 lg:mt-1 lg:mr-18">
-            <p className="text-[16px] font-bold max-w-[250px] leading-tight text-center lg:text-left">
+            <p className="text-[14px] font-medium max-w-[230px] leading-tight text-center lg:text-left">
               Wadah Belajar untuk Mahasiswa Prodi Teknik Informatika di UKDLSM
             </p>
           </div>
