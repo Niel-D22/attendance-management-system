@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import svgRaw from "../../assets/online-tech-talks-animate.svg?raw";
-import { HiMenuAlt3, HiX } from "react-icons/hi"; // Pastikan install react-icons
+import { HiMenuAlt3, HiX } from "react-icons/hi"; 
 import Profile1 from "../../assets/Frame 10.svg";
 import Profile2 from "../../assets/Frame 11.svg";
 import Profile3 from "../../assets/Frame 12.svg";
 import ISG from "../../assets/LOGOISG.png";
 import DLSU from "../../assets/DLSU.png";
+
 
 const Beranda = () => {
   const [percent, setPercent] = useState(0);
@@ -66,6 +67,7 @@ const Beranda = () => {
       {/* --- HEADER TEXT --- */}
      <h1 className="flex flex-col items-center justify-center text-center font-bold text-[40px] md:text-[80px] lg:text-[110px] px-4 lg:w-300 mt-10 lg:mt-10 [text-shadow:1px_1px_1px_rgba(255,255,255,255)] lg:[text-shadow:2px_2px_1px_rgba(255,255,255,255)] [letter-spacing:-0.05em] lg:[letter-spacing:-0.10em] [line-height:0.9] lg:[line-height:0.8] z-20">
   
+ 
   {/* Baris Teks Utama */}
   <span>
     Komunitas Mahasiswa Informatika{" "}

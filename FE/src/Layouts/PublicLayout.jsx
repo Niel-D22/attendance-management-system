@@ -4,10 +4,12 @@ import Navbar from "../Components/Public Componnet/Navbar";
 export default function PublicLayout() {
   return (
     <>
-      <Navbar />
-      <main>
-        <Outlet />
-      </main>
+      <div className="relative w-full h-full">
+        <Navbar />
+        <main>
+          <Outlet />
+        </main>
+      </div>
     </>
   );
 }

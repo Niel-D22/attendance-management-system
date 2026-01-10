@@ -1,98 +1,163 @@
-import React from "react";
-import { FaCode, FaUserShield, FaRocket, FaLightbulb, FaUsers } from "react-icons/fa";
-import { HiOutlineBadgeCheck } from "react-icons/hi";
+import CardSwap, {
+  Card,
+} from "../../Components/Public Componnet/Tentang/CardSwap";
+import FallingText from "../../Components/Public Componnet/Tentang/FallingText";
+import Lanyard from "../../Components/Public Componnet/Tentang/Lanyard";
+import ScrollVelocity from "../../Components/Public Componnet/Tentang/ScrollText";
+import { BsTerminal } from "react-icons/bs";
+import { LuGlobe } from "react-icons/lu";
+import { FaUsers } from "react-icons/fa";
+import Foto1 from "../../Assets/Foto2/foto1.svg";
+import Foto2 from "../../assets/Foto2/foto2.svg";
+import Foto3 from "../../assets/Foto2/foto3.svg";
 
 const Tentang = () => {
-  const stats = [
-    { label: "Anggota Aktif", value: "150+", icon: <FaUsers /> },
-    { label: "Proyek Selesai", value: "25+", icon: <FaCode /> },
-    { label: "Prestasi", value: "12", icon: <HiOutlineBadgeCheck /> },
-  ];
-
-  const focusArea = [
-    {
-      title: "Belajar Bersama",
-      desc: "Kami mengadakan workshop mingguan dari tingkat dasar hingga mahir.",
-      icon: <FaLightbulb className="text-yellow-400" />,
-    },
-    {
-      title: "Proyek Riil",
-      desc: "Mengerjakan proyek software nyata untuk membantu digitalisasi kampus.",
-      icon: <FaRocket className="text-blue-500" />,
-    },
-    {
-      title: "Keamanan Siber",
-      desc: "Edukasi mengenai etika digital dan perlindungan data di era internet.",
-      icon: <FaUserShield className="text-red-500" />,
-    },
-  ];
-
   return (
-    <div className="bg-white min-h-screen">
-      {/* Section 1: Introduction */}
-      <section className="py-20 px-6 max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center gap-12">
-          <div className="md:w-1/2">
-            <h2 className="text-blue-600 font-bold tracking-widest uppercase text-sm mb-2">Tentang Kami</h2>
-            <h1 className="text-4xl font-extrabold text-gray-900 mb-6 leading-tight">
-              Wadah Kolaborasi Mahasiswa <br /> 
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-500">
-                Pegiat Teknologi
-              </span>
-            </h1>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              Komunitas IT Kampus didirikan untuk menjembatani kesenjangan antara teori akademik 
-              dan kebutuhan industri teknologi. Kami percaya bahwa belajar teknologi paling efektif 
-              adalah melalui praktik langsung dan kolaborasi tim.
-            </p>
+    <>
+      <div className="relative w-full flex flex-col h-170 bg-black space-y-10 overflow-hidden font-Space">
+        <div className="flex items-center justify-center px-30 pt-50">
+          {/* --- LAYER 1: LANYARD (Ditaruh di belakang) --- */}
+          <div className="absolute inset-0 z-0">
+            {/* Kamu bisa atur posisi manual di sini jika ingin digeser */}
+            <div className="relative w-full h-full left-90">
+              <Lanyard position={[0, 0, 40]} gravity={[0, -40, 0]} />
+            </div>
           </div>
-          <div className="md:w-1/2 grid grid-cols-2 gap-4">
-            {stats.map((item, index) => (
-              <div key={index} className="p-6 bg-slate-50 rounded-2xl border border-slate-100 flex flex-col items-center shadow-sm">
-                <div className="text-2xl text-blue-600 mb-2">{item.icon}</div>
-                <span className="text-3xl font-bold text-gray-800">{item.value}</span>
-                <span className="text-gray-500 text-sm text-center font-medium">{item.label}</span>
+
+          {/* --- LAYER 2: KONTEN TULISAN (Ditaruh di depan) --- */}
+          {/* pointer-events-none sangat penting agar mouse bisa "tembus" klik lanyard di belakang tulisan */}
+          <div className="relative z-10 w-full h-full pointer-events-none flex items-center">
+            <div className="px-8 md:px-20 max-w-4xl pointer-events-auto">
+              {/* pointer-events-auto di sini agar tulisan tetap bisa diklik (misal FallingText) */}
+              <h1 className="text-white font-bold text-4xl md:text-6xl">
+                INFORMATICS <br />
+                STUDY GROUP
+              </h1>
+              <div className="mt-3 w-xl h-60">
+                <FallingText trigger="click" />
               </div>
-            ))}
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+      <div className="relative z-30  -mt-12 mb-[-3rem]">
+        <ScrollVelocity
+          texts={["ISG - UKDLSM", "Informatics Study Group"]}
+          className="custom-scroll-text text-gray-300 text-5xl "
+        />
+      </div>
 
-      {/* Section 2: What We Do (Cards) */}
-      <section className="bg-slate-900 py-20 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-4">Apa yang Kami Lakukan?</h2>
-            <p className="text-slate-400">Mendorong kreativitas melalui berbagai kegiatan positif.</p>
-          </div>
+      <div
+        className=" bg-black w-ful overflow-hidden flex"
+        style={{ height: "720px", position: "relative" }}
+      >
+        <div className="font-Space text-white w-135 absolute left-50 top-50 ">
+          <h1 className="text-5xl">
+            Elevate Your Tech Skills, Build Your Future
+          </h1>
+          <p className="text-xl text-gray-300">
+            Komunitas belajar yang interaktif untuk menciptakan mahasiswa yang
+            pintar, kreatif, dan saling mendukung di bidang informatika.
+          </p>
+        </div>
+        <CardSwap
+          cardDistance={20}
+          verticalDistance={75}
+          delay={2000}
+          pauseOnHover={true}
+          width={890}
+          height={600}
+        >
+          <Card className="text-white font-Space text-center p-2 flex flex-col justify-start items-center">
+            {/* Header: Sekarang di tengah atas karena items-center dan justify-start */}
+            <h3 className="border-b-2 w-60 p-2 border-white flex justify-center items-center gap-2 ">
+              <div className="">
+                <BsTerminal size={20} />
+              </div>
+              Fundamental Programing
+            </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {focusArea.map((item, index) => (
-              <div key={index} className="bg-slate-800 p-8 rounded-xl border border-slate-700 hover:border-blue-500 transition-all duration-300 group">
-                <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {item.icon}
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
-                <p className="text-slate-400 leading-relaxed">
-                  {item.desc}
+            {/* Jarak antara header dan gambar */}
+            <div className="mt-3 flex justify-center w-full">
+              <div className="absolute w-180 top-80 text-left space-y-2">
+                <h3 className="text-3xl font-bold">Fundamental Programing</h3>
+                <p>
+                  Fokus pada penguatan logika dasar menggunakan bahasa
+                  JavaScript. Anggota akan mempelajari fundamental pemrograman
+                  mulai dari variabel, tipe data, dan operator, hingga struktur
+                  kontrol yang lebih kompleks seperti looping dan functions
+                  dasar hingga lanjutan.
                 </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <img
+                height={201}
+                src={Foto2}
+                alt="ISG Project Session"
+                className="object-cover"
+              />
+            </div>
+          </Card>
 
-      {/* Section 3: Visi Misi Sederhana */}
-      <section className="py-20 px-6 text-center max-w-4xl mx-auto">
-        <div className="inline-block p-3 bg-blue-100 rounded-full text-blue-600 mb-6">
-          <FaRocket className="text-2xl" />
-        </div>
-        <h2 className="text-3xl font-bold text-gray-900 mb-6">Visi Kami</h2>
-        <p className="text-2xl text-gray-500 font-light leading-relaxed italic">
-          "Menciptakan lingkungan belajar yang inklusif bagi seluruh mahasiswa untuk mengeksplorasi potensi teknologi dan menciptakan dampak sosial melalui inovasi digital."
-        </p>
-      </section>
-    </div>
+          <Card className="text-white font-Space text-center p-2 flex flex-col justify-start items-center">
+            {/* Header: Sekarang di tengah atas karena items-center dan justify-start */}
+            <h3 className="border-b-2 w-54 p-2 border-white flex justify-center items-center gap-2 ">
+              <div className="">
+                <LuGlobe size={20} />
+              </div>
+              Website Development
+            </h3>
+
+            {/* Jarak antara header dan gambar */}
+            <div className="mt-3 flex justify-center w-full">
+              <div className="absolute w-180 top-80 text-left space-y-2">
+                <h3 className="text-3xl font-bold">Website Development</h3>
+                <p>
+                  Mempelajari ekosistem pengembangan web modern mulai dari
+                  struktur HTML, styling dengan CSS, hingga manipulasi DOM.
+                  Dilanjutkan dengan implementasi API Dasar menggunakan fetch
+                  untuk membangun aplikasi web yang dinamis dan interaktif.
+                </p>
+              </div>
+              <img
+                height={201}
+                src={Foto3}
+                alt="ISG Project Session"
+                className="object-cover"
+              />
+            </div>
+          </Card>
+
+          <Card className="text-white font-Space text-center p-2 flex flex-col justify-start items-center">
+            {/* Header: Sekarang di tengah atas karena items-center dan justify-start */}
+            <h3 className="border-b-2 w-45 p-2 border-white flex justify-center items-center gap-2 ">
+              <div className="">
+                <FaUsers size={20} />
+              </div>
+              Project & Sharing
+            </h3>
+
+            {/* Jarak antara header dan gambar */}
+            <div className="mt-3 flex justify-center w-full">
+              <div className="absolute w-180 top-80 text-left space-y-2">
+                <h3 className="text-3xl font-bold">Project & Sharing</h3>
+                <p>
+                  Wadah kolaborasi melalui Sharing Session bersama guest star
+                  atau alumni untuk berbagi wawasan industri. Anggota juga
+                  ditantang mengimplementasikan ilmu melalui Mini Project
+                  Assignment untuk mengasah soft skills dan kreativitas.
+                </p>
+              </div>
+              <img
+                height={201}
+                src={Foto1}
+                alt="ISG Project Session"
+                className="object-cover"
+              />
+            </div>
+          </Card>
+        </CardSwap>
+      </div>
+    </>
   );
 };
 
